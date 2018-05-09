@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+
+repositories {
+    jcenter()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.marcus.application.Main'
+    }
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+dependencies {
+    compile 'org.json:json:20180130'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.13'
+
+    testImplementation 'junit:junit:4.12'
+}
